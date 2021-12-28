@@ -64,9 +64,14 @@ def add_fine(request):
 
 # 查询车队下的司机 TODO
 def select_drivers(request):
-    drivers = Driver.objects.filter(belongs="303")
-    print(drivers)
-    return render(request,"showDriver.html",{"drivers":drivers})
+    try:
+        drivers=[]
+        roads=Road.objects.filter(belongs=request.POST.get("ID"))
+        for road in roads:
+            drivers.append(Driver.objects.filter(belongs=road.ID))
+        return render(request,"showDriver.html",{"drivers":drivers})
+    except:
+        return render(request, "error.html")
 
 
 # 查询司机违章的详细信息 
