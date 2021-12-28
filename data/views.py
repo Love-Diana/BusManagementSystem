@@ -62,18 +62,35 @@ def add_fine(request):
         return render(request, "error.html")
 
 
-# 查询车队下的司机
+# 查询车队下的司机 TODO
 def select_drivers(request):
     drivers = Driver.objects.filter(belongs="303")
     print(drivers)
     return render(request,"showDriver.html",{"drivers":drivers})
 
 
-# 查询司机违章的详细信息
+# 查询司机违章的详细信息 
 def select_fine(request):
-    pass
+    try:
+        driverID=request.POST.get("ID")
+        driver=Driver.objects.get(ID=driverID)
+        name=driver.name
+        start=request.POST.get("start")
+        end=request.POST.get("end")
+        fines=Punishment.objects.filter(driverID=driverID,time__range=(start,end))
+        return render(request,"showFines.html",{"name":name,"fines":fines})
+    except:
+        return render(request, "error.html")
 
-
-# 统计一个车队下的违章
+# 统计一个车队下的违章 TODO
 def fine_count(request):
-    pass
+    try:
+        fines=[]
+        roads=Road.objects.filter(belongs=request.POST.get("ID"))
+        start=request.POST.get("start")
+        end=request.POST.get("end")
+        for road in roads:
+            fines.append(fines=Punishment.objects.filter(belongs=road.ID,time__range=(start,end)))
+        # das 
+    except:
+        return render(request, "error.html")

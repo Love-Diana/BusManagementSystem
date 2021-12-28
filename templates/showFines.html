@@ -14,7 +14,7 @@
 	</head>
         <style>
         #driverTable {
-    width: 800px;
+    width: 1000px;
     margin: auto;
     margin-top: 80px;
 }
@@ -22,28 +22,28 @@
 	<body>
         <div class="panel panel-default" id=driverTable>
             <!-- Default panel contents -->
-            <div class="panel-heading">车队内的司机信息</div>
+            <div class="panel-heading">司机{{name}}的违章详情</div>
             <!-- Table -->
             <table class="table">
                 <tr>
-                    <th>司机工号</th>
+                    <th>违章ID</th>
                     <th>司机姓名</th>
-                    <th>是否是路队长</th>
-                    <th>司机性别</th>
-                    <th>司机路线</th>
+                    <th>司机工号</th>
+                    <th>违章类型</th>
+                    <th>违章车辆</th>
+                    <th>违章站点</th>
+                    <th>违章时间</th>
+                    <th>违章线路</th>
                 </tr>
-                    {% for i in drivers %}
+                    {% for i in fines %}
                         <tr>
                         <td>{{ i.ID }}</td>
-                        <td>{{ i.name }}</td>
-                        <td>{{ i.is_roadleader }}</td>
-                        <td>
-                            {%if i.sex %}
-                            男
-                            {% else  %}
-                            女
-                            {% endif %}
-                        </td>
+                        <td>{{ i.drivername }}</td>
+                        <td>{{ i.driverID }}</td>
+                        <td>{{ i.type }}</td>
+                        <td>{{ i.carID }}</td>
+                        <td>{{ i.station }}</td>
+                        <td>{{ i.time }}</td>
                         <td>{{ i.belongs }}</td>
                         </tr>
                     {% endfor %}
