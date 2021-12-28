@@ -20,11 +20,11 @@ import data.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^$',data.views.menu),
-    path('/enter',data.views.enter),
-    path("/add_driver",data.views.add_driver),
-    path("/add_fine",data.views.add_fine),
-    path("/add_motor",data.views.add_motor),
-    path("/select_fine",data.views.select_fine),
-    path("/fine_count",data.views.fine_count),
-    path("/select_drivers",data.views.select_drivers),
+    path('enter/',data.views.enter),
+    path("add_driver/",data.views.add_driver),
+    path("add_fine/",data.views.add_fine),
+    path("add_motor/",data.views.add_motor),
+    path("select_fine/",data.views.select_fine),
+    path("fine_count/",data.views.fine_count),
+    path("select_drivers/",data.views.select_drivers),
 ]

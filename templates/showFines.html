@@ -9,9 +9,16 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
 		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="frame.css">
+
 		<title>demo</title>
 	</head>
+        <style>
+        #driverTable {
+    width: 800px;
+    margin: auto;
+    margin-top: 80px;
+}
+    </style>
 	<body>
         <div class="panel panel-default" id=driverTable>
             <!-- Default panel contents -->
@@ -19,26 +26,25 @@
             <!-- Table -->
             <table class="table">
                 <tr>
-                    <th>序号</th>
-                    <th>订单编号</th>
-                    <th>门店编号</th>
-                    <th>收货人</th>
-                    <th>详细地址</th>
-                    <th>订单总价</th>
-                    <th>实付金额</th>
-                    <th>入机状态</th>
+                    <th>司机工号</th>
+                    <th>司机姓名</th>
+                    <th>是否是路队长</th>
+                    <th>司机性别</th>
+                    <th>司机路线</th>
                 </tr>
-        
-                    {% for i in order %}
+                    {% for i in drivers %}
                         <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ i.0 }}</td>
-                        <td>{{ i.1 }}</td>
-                        <td>{{ i.2 }}</td>
-                        <td>{{ i.3 }}</td>
-                        <td>{{ i.4 }}</td>
-                        <td>{{ i.5 }}</td>
-                        <td>{{ i.6 }}</td>
+                        <td>{{ i.ID }}</td>
+                        <td>{{ i.name }}</td>
+                        <td>{{ i.is_roadleader }}</td>
+                        <td>
+                            {%if i.sex %}
+                            男
+                            {% else  %}
+                            女
+                            {% endif %}
+                        </td>
+                        <td>{{ i.belongs }}</td>
                         </tr>
                     {% endfor %}
             </table>

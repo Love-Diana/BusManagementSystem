@@ -32,11 +32,11 @@ class Motors(models.Model):
 
 
 class Punishment(models.Model):
-    ID = models.CharField(max_length=255, primary_key=True)
+    ID = models.AutoField(primary_key=True)
     drivername = models.CharField(max_length=255)
     driverID = models.CharField(max_length=255)
     type = models.CharField(max_length=255)
     carID = models.CharField(max_length=255)
     station = models.CharField(max_length=255)
-    time = models.TimeField()
+    time = models.DateTimeField()
     belongs = models.CharField(max_length=255)

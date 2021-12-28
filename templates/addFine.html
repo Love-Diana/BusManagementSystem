@@ -9,28 +9,37 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
 		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="frame.css">
+
 		<title>demo</title>
 	</head>
+        <style>
+        #form {
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    margin: auto;
+    margin-top: 200px;
+}
+    </style>
 	<body>
 		<div id="form">
-            <form action="/add_fine" method="post">
+            <form action="/add_fine/" method="post">
 			<div class="page-header">
 			  <h1> 添加违章信息 </h1>
 			</div>
             <div class="input-group">
                 <span class="input-group-addon">司机工号</span>
-                <input type="text" class="form-control"  required  aria-describedby="basic-addon1" name="ID">
+                <input type="text" class="form-control"  required  aria-describedby="basic-addon1" name="driver">
             </div>
             <br>
             <div class="input-group">
                 <span class="input-group-addon">车辆牌号</span>
-                <input type="text" class="form-control"  required  aria-describedby="basic-addon1" name="ID">
+                <input type="text" class="form-control"  required  aria-describedby="basic-addon1" name="motor">
             </div>
             <br>
             <div class="input-group">
                 <span class="input-group-addon">违章站点</span>
-                <input type="text" class="form-control"  required  aria-describedby="basic-addon1" name="name">
+                <input type="text" class="form-control"  required  aria-describedby="basic-addon1" name="station">
             </div>
             <br>
             <div class="input-group">
@@ -46,7 +55,7 @@
             <br>
             <div class="input-group">
                 <span class="input-group-addon">违章时间</span>
-                <input type="datetime-local" class="form-control"  required  aria-describedby="basic-addon1" name="ID">
+                <input type="datetime-local" class="form-control"  required  aria-describedby="basic-addon1" name="time">
             </div>
             
             <br>
