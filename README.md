@@ -1,0 +1,2 @@
+# BusManagementSystem
+一个基于django的简易的公交管理系统
