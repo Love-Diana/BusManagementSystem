@@ -62,14 +62,17 @@ def add_fine(request):
         return render(request, "error.html")
 
 
-# 查询车队下的司机 TODO
+# 查询车队下的司机
 def select_drivers(request):
     try:
-        drivers=[]
-        roads=Road.objects.filter(belongs=request.POST.get("ID"))
+        drivers = []
+        roads = Road.objects.filter(belongs=request.POST.get("ID"))
         for road in roads:
-            drivers.append(Driver.objects.filter(belongs=road.ID))
-        return render(request,"showDriver.html",{"drivers":drivers})
+            temp = Driver.objects.filter(belongs=road.ID)
+            for i in temp:
+                drivers.append(i)
+        print(drivers)
+        return render(request, "showDriver.html", {"drivers": drivers})
     except:
         return render(request, "error.html")
 
@@ -77,25 +80,40 @@ def select_drivers(request):
 # 查询司机违章的详细信息 
 def select_fine(request):
     try:
-        driverID=request.POST.get("ID")
-        driver=Driver.objects.get(ID=driverID)
-        name=driver.name
-        start=request.POST.get("start")
-        end=request.POST.get("end")
-        fines=Punishment.objects.filter(driverID=driverID,time__range=(start,end))
-        return render(request,"showFines.html",{"name":name,"fines":fines})
+        driverID = request.POST.get("ID")
+        driver = Driver.objects.get(ID=driverID)
+        name = driver.name
+        start = request.POST.get("start")
+        end = request.POST.get("end")
+        fines = Punishment.objects.filter(driverID=driverID, time__range=(start, end))
+        return render(request, "showFines.html", {"name": name, "fines": fines})
     except:
         return render(request, "error.html")
 
-# 统计一个车队下的违章 TODO
+
+# 统计一个车队下的违章
 def fine_count(request):
     try:
-        fines=[]
-        roads=Road.objects.filter(belongs=request.POST.get("ID"))
-        start=request.POST.get("start")
-        end=request.POST.get("end")
+        toHtml = []
+        data = {}
+        fines = []
+        roads = Road.objects.filter(belongs=request.POST.get("ID"))
+        start = request.POST.get("start")
+        end = request.POST.get("end")
         for road in roads:
-            fines.append(fines=Punishment.objects.filter(belongs=road.ID,time__range=(start,end)))
-        # das 
+            temp = Punishment.objects.filter(belongs=road.ID, time__range=(start, end))
+            for i in temp:
+                fines.append(i)
+        for i in fines:
+            if i.type not in data:
+                data[i.type] = 1
+            else:
+                data[i.type] += 1
+        for i in data:
+            temp = types()
+            temp.type = i
+            temp.number = data[i]
+            toHtml.append(temp)
+        return render(request, "showCounts.html", {"data": toHtml})
     except:
         return render(request, "error.html")

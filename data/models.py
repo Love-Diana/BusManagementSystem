@@ -40,3 +40,10 @@ class Punishment(models.Model):
     station = models.CharField(max_length=255)
     time = models.DateTimeField()
     belongs = models.CharField(max_length=255)
+
+
+# 用于统计类别的类，不需要创建数据库
+class types:
+    def __init__(self):
+        self.type=None
+        self.number=0
