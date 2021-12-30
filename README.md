@@ -35,6 +35,8 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 ```
 
+如果没反应的话试试把python3换成python
+
 成功输入后会自动按照models里的模型建立数据库的表
 
 完成之后输入
